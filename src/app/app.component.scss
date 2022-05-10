@@ -1,9 +1,19 @@
 .app{
   main{
   padding: 10px;
-  height: calc(100vh - 56px);
+  height: calc(100vh - 80px);
+  display:flex;
+  gap: 10px;
   .list-container{
-    width:25%
+    width:30%
   }
+  .todo-container{
+    width:70%
+  }
+.add-new-todo-btn{
+  position:fixed;
+  bottom:30px;
+  right:30px;
+}
   }
 }
