@@ -13,4 +13,5 @@
       <button (click)="onCompleteTodo(todo)"mat-raised-button color="primary">Complete</button>
       <button (click)="onArchiveTodo(todo)" mat-raised-button color="warn">Archive</button>
     </mat-card-actions>
+    <app-count-down [dDay]="todo.endDate"></app-count-down>
   </mat-card>
