@@ -1,5 +1,4 @@
-import { Component, OnDestroy, OnInit,Input } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Component,Input } from '@angular/core';
 import { ITodo } from 'src/app/models/todo.interface';
  
 @Component({
@@ -7,7 +6,7 @@ import { ITodo } from 'src/app/models/todo.interface';
   templateUrl: './todo.component.html',
   styleUrls: ['./todo.component.scss']
 })
-export class TodoComponent implements OnInit,OnDestroy {
+export class TodoComponent  {
 
   //2 ways to deal with the todo:
   //1)
@@ -24,16 +23,10 @@ export class TodoComponent implements OnInit,OnDestroy {
 
 //****************** */
 
-  private subscription: Subscription= new Subscription();
-
+  
   constructor() { }
 
-  ngOnInit(): void {
    
-  }
-  ngOnDestroy():void  {
-    this.subscription.unsubscribe();
-  }
   public onCompleteTodo(todo: ITodo):void{
     todo.isCompleted=!todo.isCompleted;
   }

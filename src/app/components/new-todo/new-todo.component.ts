@@ -20,8 +20,7 @@ export class NewTodoComponent implements OnInit {
   }
 
   public onNewTodoSubmit():void{
-    console.log("form", this.form)
-    console.log("new todo submition");
+   if(this.form.valid){
     //create new todo object
     const values=this.form.form.value;
     const newTodo:ITodo={
@@ -35,9 +34,12 @@ export class NewTodoComponent implements OnInit {
 
     }
 
-    console.log("newtodo",newTodo)
+    
     this.todoService.addNewTodo(newTodo);
+    
     this.dialog.closeAll();
+  }
+   
   }
 
 }
