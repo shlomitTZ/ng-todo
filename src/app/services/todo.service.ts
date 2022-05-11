@@ -7,45 +7,10 @@ import { ITodo } from '../models/todo.interface';
   providedIn: 'root'
 })
 export class TodoService {
-  private mock:ITodo[]=[{
-    "id": 1,
-    "title": "Erinaceus frontalis",
-    "description": "Erinaceus frontalis description",
-    "isCompleted": false,
-    "isArchived": false,
-    "endDate": "8/19/2021",
-    "selected": true
-  },
-  {
-    "id": 2,
-    "title": "Columba palumbus",
-    "description": "Columba palumbus desc",
-    "isCompleted": false,
-    "isArchived": false,
-    "endDate": "5/19/2021",
-    "selected":false
-  },
-  {
-    "id": 3,
-    "title": "Cygnus buccinator",
-    "description": "Cygnus buccinator desc",
-    "isCompleted": false,
-    "isArchived": false,
-    "endDate": "7/14/2021",
-    "selected":false,
-  },
-  {
-    "id": 4,
-    "title": "Spermophilus richardsonii",
-    "description": "Spermophilus richardsonii desc ",
-    "isCompleted": false,
-    "isArchived": false,
-    "endDate": "6/10/2021",
-    "selected":false,
-  }
-  ]
-  private _todoSubject: BehaviorSubject<Array<ITodo>>=new BehaviorSubject(this.mock)
-  private _singletodoSubject:BehaviorSubject<ITodo>=new BehaviorSubject(this.mock[0]);
+  private todos:  Array<ITodo>=[];
+  private _todoSubject: BehaviorSubject<Array<ITodo>>=new BehaviorSubject(this.todos)
+  private _singletodoSubject:BehaviorSubject<ITodo>=new BehaviorSubject(
+    this.todos.length? this.todos[0] : null);
  
   constructor() { }
   public getTodos(): Observable<Array<ITodo>>{
@@ -56,5 +21,10 @@ export class TodoService {
   }
   public setSelectedToDo(todo: ITodo){
     this._singletodoSubject.next(todo);
+  }
+  public addNewTodo(newTodo:ITodo):void{
+    const existingTodos: Array<ITodo>=this._todoSubject.value;
+    existingTodos.push(newTodo);
+    this._todoSubject.next(existingTodos)
   }
 }
