@@ -24,10 +24,12 @@ export class TodoListComponent implements OnInit  {
     
     this.todoService.setSelectedToDo(todo);
     
-    this.todos.forEach((todo)=>{
+    
+  /*  this.todos.forEach((todo)=>{
       todo.selected=false;
     });
-  this.todos[index].selected=true;
+  this.todos[index].selected=true;*/
+  this.todoService.onTodoSelection(index)
   }
 
 }
